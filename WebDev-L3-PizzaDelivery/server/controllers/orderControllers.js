@@ -95,15 +95,15 @@ const createOrder = asyncHandler(async (req, res) => {
                   throw new Error('Invalid Razorpay Order Id');
                 } else {
                   // Iterate through orderItems to deduct items from inventory
-                  for (const orderItem of orderItems) {
-                    const pizza = await Pizza.findById(orderItem._id);
-                    if (!pizza) {
-                      res.status(404).json({ message: 'Pizza Not Found!' });
-                      return;
-                    }
+                  // for (const orderItem of orderItems) {
+                  //   const pizza = await Pizza.findById(orderItem._id);
+                  //   if (!pizza) {
+                  //     res.status(404).json({ message: 'Pizza Not Found!' });
+                  //     return;
+                  //   }
 
-                    await updateInventoryQuantity(pizza, orderItem.qty);
-                  }
+                  //   await updateInventoryQuantity(pizza, orderItem.qty);
+                  // }
 
                   const order = new Order({
                     user: req.user._id,
@@ -143,7 +143,7 @@ const createOrder = asyncHandler(async (req, res) => {
                         <p>Thank you for choosing our service!</p>
                       `;
 
-                      await sendEmail(user.email, emailSubject, emailBody);
+                      // await sendEmail(user.email, emailSubject, emailBody);
                     }
 
                     res.status(200).json({
