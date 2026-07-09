@@ -1,191 +1,105 @@
 # Pizza Delivery System App - MERN
 
-> Pizza Delivery System App (MERN - MongoDB, Express, React, Node.js) is a comprehensive web application that enables users to customize and order pizzas online. This project showcases a full-stack development approach with a focus on user experience, functionality, and security. The app includes a user-friendly frontend interface for ordering pizzas, an admin dashboard for managing orders and inventory, and a secure backend server for processing orders and payments.
+Pizza Delivery System App (MERN - MongoDB, Express, React, Node.js) is a comprehensive web application that enables users to customize and order pizzas online. Developed as the Level 3 submission for the Oasis Infobyte Web Development & Designing Internship track, this project showcases a production-grade full-stack development approach with a focus on role-based access control, real-time inventory adjustments, automated administration management, and secure third-party checkout scripts.
 
-<br />
-<div align="center">
-  <p align="center">
-    <br />
-    <a href="https://github.com/itxSaaad/pizza-palette-app-mern-OIBSIP-task-1">
-    <strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://pizza-palette-app-mern.vercel.app/">View Demo</a>
-    ·
-    <a href="https://github.com/itxSaaad/pizza-palette-app-mern-OIBSIP-task-1/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/itxSaaad/pizza-palette-app-mern-OIBSIP-task-1/issues">Request Feature</a>
-  </p>
-</div>
+## Project Context
+* Assigned Track: Web Development & Designing
+* Assigned Task: Level 3 - Task 1: Pizza Delivery Full-Stack Application
+* Strict Task Directory Pattern: OIBSIP/WebDev-L3-PizzaDelivery/
 
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-
-## Live Preview Project
-
-[Live Preview](https://pizza-palette-app-mern.vercel.app/)
+---
 
 ## Features
 
-- **User & Admin Authentication:** Secure login and registration system with role-based access control for users and administrators.
-- **Pizza Management System:** Full CRUD operations for pizzas, allowing both admins and users to create custom pizzas with various ingredients (bases, sauces, cheeses, veggies).
-- **Inventory Management:** Complete tracking system for pizza ingredients with quantity monitoring, threshold alerts, and price management for bases, sauces, cheeses, and vegetables.
-- **Order Processing System:** End-to-end order management with order creation, status tracking, and delivery monitoring functionality.
-- **Payment Integration:** Secure payment processing through Razorpay API with order checkout capabilities and payment verification.
-- **Multi-level Access Control:** Differentiated capabilities for users and admins, with specific permissions for pizza creation, order management, and inventory control.
-- **Order History & Tracking:** Users can view their order history and track current order status through the delivery process.
-- **Admin Dashboard:** Comprehensive order management system allowing admins to view all orders, update order status, and manage inventory levels.
-- **Automatic Inventory Deduction:** System automatically updates ingredient quantities when orders are placed to maintain accurate inventory levels.
+* User and Admin Authentication: Secure login and registration system featuring email verification workflows and role-based access control managed with JSON Web Tokens (JWT).
+* Pizza Management System: Full CRUD operations for pizzas, allowing users to build a custom pizza step-by-step with varied ingredients (bases, sauces, cheeses, veggies).
+* Inventory Management: Complete backend tracking system for pizza ingredients with baseline quantity monitoring, configurable low-stock threshold alerts, and component pricing rules.
+* Order Processing System: End-to-end order processing lifecycle with asynchronous order execution, kitchen queue reception state tracking, and delivery monitoring statuses.
+* Payment Integration: Multi-stage checkout processing secured through the Razorpay API in Test Mode with dynamic payment verification hooks.
+* Order History and Tracking: Active client portal allowing authenticated users to review historical context logs and monitor continuous order fulfillment states in real time.
+* Admin Dashboard: Centralized order overview interface giving administrative users direct tools to update delivery pipeline checkpoints and modify component inventory levels.
+* Automatic Inventory Deduction: Background database updates that automatically decrement ingredient tracking documents when verified orders hit the validation queue.
+
+---
 
 ## Built With
 
-- **Frontend:** React.js (Vite.js) (Tailwind CSS) (React Router) (@reduxjs/toolkit) (React Redux) ()
-- **Backend:** Node.js (Express) (bcryptjs) (cors) (dotenv) (express-async-handler) (jsonwebtoken)
-- **Database:** MongoDB (Atlas) (Mongoose) (MongoDB Compass)
-- **Payment:** Razorpay API (Test Mode)
-- **Authentication:** JSON Web Tokens (JWT)
-- **Email Notifications:** Nodemailer
-- **Version Control:** Git and GitHub
+* Frontend: React.js (Vite) | Tailwind CSS | React Router | Redux Toolkit | React Redux
+* Backend: Node.js | Express.js | bcryptjs | cors | dotenv | express-async-handler | jsonwebtoken
+* Database: MongoDB | Mongoose ORM
+* Payment: Razorpay API (Test Mode)
+* Authentication: JSON Web Tokens (JWT)
+* Email Notifications: Nodemailer
+* Task Scheduling: node-cron
+
+---
 
 ## Getting Started
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/en/) - JavaScript runtime built on Chrome's V8 JavaScript engine
-- [NPM](https://www.npmjs.com/) - Node Package Manager
+* Node.js - Long Term Support (LTS) environment runner
+* NPM - Node Package Manager binary utilities
 
-### Installation
+### Installation and Configuration
 
-1. **Clone the repository**
+1. Navigate to the Strict Project Directory
+Open your terminal instance at the root directory level matching the tracking format required:
+cd OIBSIP/WebDev-L3-PizzaDelivery
 
-   ```sh
-      git clone https://github.com/itxSaaad/pizza-palette-app-mern-OIBSIP-task-1.git
-      cd pizza-palette-app-mern-OIBSIP-task-1
-   ```
+2. Install Server and Client Dependencies
+Pull structural environment modules for both the base Express orchestration and the React client application:
+# Install backend server requirements
+npm install
 
-2. **Install dependencies**
+# Navigate to the client app folder and install dependencies
+cd client
+npm install
+cd ..
 
-   ```sh
-      # Install server dependencies
-      npm install
+3. Configure Environment Variables
 
-      # Install client dependencies
-      cd client
-      npm install
-      cd ..
-   ```
+Construct a .env initialization sheet in the root backend folder (/WebDev-L3-PizzaDelivery/.env):
+NODE_ENV=development
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_signature_secret
+SALT=10
+SENDER_EMAIL=your_email@example.com
+SENDER_PASSWORD=your_email_password_or_app_password
+SUPERADMIN_EMAIL=admin@example.com
+RAZORPAY_KEY_ID=your_razorpay_key_id
+RAZORPAY_KEY_SECRET=your_razorpay_key_secret
 
-3. **Configure environment variables**
+Construct a matching .env variables list in the client application root folder (/WebDev-L3-PizzaDelivery/client/.env):
+VITE_SERVER_URL=http://localhost:5000
+VITE_CLIENT_URL=http://localhost:3000
+VITE_RAZORPAY_KEY_ID=your_razorpay_key_id
 
-   Create a `.env` file in the root directory:
+4. Seed Database Collections (Optional)
+Populate initial records covering stock configuration baselines, available components, and pre-packaged pizzas:
+npm run data:import
 
-   ```sh
-       # Server Configuration
-       NODE_ENV=development
-       PORT=5000
+To wipe active operational data clean:
+npm run data:destroy
 
-       # MongoDB Connection
-       MONGO_URI=your_mongodb_uri
+5. Start Development Environments
+Execute parallel hot-reloading loops across front-end targets and backend API listening structures:
+# Run both server and client services simultaneously
+npm run dev
 
-       # Authentication
-       JWT_SECRET=your_jwt_secret
-       SALT=10
+# Isolate and run the backend server layer only
+npm run server
 
-       # Email Configuration
-       SENDER_EMAIL=your_email@example.com
-       SENDER_PASSWORD=your_email_password
-       SUPERADMIN_EMAIL=admin@example.com
+# Isolate and run the frontend interface only
+npm run client
 
-       # Payment Gateway
-       RAZORPAY_KEY_ID=your_razorpay_key_id
-       RAZORPAY_KEY_SECRET=your_razorpay_key_secret
-   ```
+6. Target Active Local Application Hosts
+* Client Interface Portal: http://localhost:3000
+* Server Endpoint Handler: http://localhost:5000
 
-   Create a `.env` file in the client directory:
-
-   ```sh
-       VITE_SERVER_URL=http://localhost:5000
-       VITE_CLIENT_URL=http://localhost:3000
-       VITE_RAZORPAY_KEY_ID=your_razorpay_key_id
-   ```
-
-4. **Seed the database (Optional)**
-
-   Populate the database with initial data:
-
-   ```sh
-       npm run data:import
-   ```
-
-   To reset the database:
-
-   ```sh
-       npm run data:destroy
-   ```
-
-5. **Start the application**
-
-   ```sh
-      # Run both server and client
-      npm run dev
-
-      # Run server only
-      npm run server
-
-      # Run client only
-      npm run client
-   ```
-
-6. **Access the application**
-
-- Frontend: [http://localhost:3000](http://localhost:3000)
-- Backend API: [http://localhost:5000](http://localhost:5000)
-
-> **Note:** Make sure MongoDB is running locally or you're using MongoDB Atlas with the correct connection string.
-
-## Contributing
-
-Contributions are what make the open-source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the repo
-2. Clone the project
-3. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-4. Commit your changes (`git commit -m "Add some AmazingFeature"`)
-5. Push to the branch (`git push origin feature/AmazingFeature`)
-6. Open a pull request
-
-## Contact
-
-- Twitter: [@itxSaaad](https://twitter.com/itxSaaad)
-- LinkedIn: [@itxSaaad](https://www.linkedin.com/in/itxsaaad/)
-- Portfolio: [Muhammad Saad Faisal](https://codesbysaaad.tech/)
-- Email: [saadstudent.cs@gmail.com](mailto:saadstudent.cs@gmail.com)
+---
 
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
-
-## Support
-
-Give ⭐️ if you like this project!
-
-<a href="https://www.buymeacoffee.com/itxSaaad"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" width="200" /></a>
-
-<!-- MARKDOWN LINKS & IMAGES -->
-
-[contributors-shield]: https://img.shields.io/github/contributors/itxsaaad/pizza-palette-app-mern-OIBSIP-task-1.svg?style=for-the-badge
-[contributors-url]: https://github.com/itxsaaad/pizza-palette-app-mern-OIBSIP-task-1/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/itxsaaad/pizza-palette-app-mern-OIBSIP-task-1.svg?style=for-the-badge
-[forks-url]: https://github.com/itxsaaad/pizza-palette-app-mern-OIBSIP-task-1/network/members
-[stars-shield]: https://img.shields.io/github/stars/itxsaaad/pizza-palette-app-mern-OIBSIP-task-1.svg?style=for-the-badge
-[stars-url]: https://github.com/itxsaaad/pizza-palette-app-mern-OIBSIP-task-1/stargazers
-[issues-shield]: https://img.shields.io/github/issues/itxsaaad/pizza-palette-app-mern-OIBSIP-task-1.svg?style=for-the-badge
-[issues-url]: https://github.com/itxsaaad/pizza-palette-app-mern-OIBSIP-task-1/issues
-[license-shield]: https://img.shields.io/github/license/itxsaaad/pizza-palette-app-mern-OIBSIP-task-1.svg?style=for-the-badge
-[license-url]: https://github.com/itxsaaad/pizza-palette-app-mern-OIBSIP-task-1/blob/main/LICENSE.md
+Distributed under the MIT License. See LICENSE for structural context indicators.
