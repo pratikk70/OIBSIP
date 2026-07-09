@@ -1,4 +1,6 @@
-# Pizza Delivery System App - MERN
+# Pizza Palette - Full Stack MERN Delivery App
+🚀 **Live Demo:** [https://oibsip-seven-lac.vercel.app]
+⚙️ **Backend API:** [https://oibsip-sw8a.onrender.com]
 
 Pizza Delivery System App (MERN - MongoDB, Express, React, Node.js) is a comprehensive web application that enables users to customize and order pizzas online. Developed as the Level 3 submission for the Oasis Infobyte Web Development & Designing Internship track, this project showcases a production-grade full-stack development approach with a focus on role-based access control, real-time inventory adjustments, automated administration management, and secure third-party checkout scripts.
 
