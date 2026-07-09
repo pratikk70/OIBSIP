@@ -43,11 +43,11 @@ const pizzaSchema = new mongoose.Schema(
       enum: ['small', 'medium', 'large', 'extra-large'],
       required: true,
     },
-    createdBy: {
-      type: String,
-      enum: ['admin', 'user'],
-      required: true,
-    },
+   createdBy: {
+  type: mongoose.Schema.Types.ObjectId,
+  required: true,
+  ref: 'Admin' // Links to your Admin model
+},
     imageUrl: {
       type: String,
       required: true,

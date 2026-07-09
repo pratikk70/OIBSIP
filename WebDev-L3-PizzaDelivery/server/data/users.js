@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs');
 const admins = [
   {
     name: 'Admin User 1',
-    email: 'admin1@pizzapalette.com',
+    email: 'admin1@gmail.com',
     password: bcrypt.hashSync('123456', 10),
     role: 'admin',
     permissions: ['admin'],
@@ -11,7 +11,7 @@ const admins = [
   },
   {
     name: 'Admin User 2',
-    email: 'admin2@pizzapalette.com',
+    email: 'admin2@gmail.com',
     password: bcrypt.hashSync('123456', 10),
     role: 'admin',
     permissions: ['admin'],
@@ -21,8 +21,8 @@ const admins = [
 
 const users = [
   {
-    name: 'John Doe',
-    email: 'john@example.com',
+    name: 'Pratik Parkale',
+    email: 'pratik@gmail.com',
     password: bcrypt.hashSync('123456', 10),
     phoneNumber: '123-456-7890',
     address: '123 Main St, City',
@@ -34,7 +34,7 @@ const users = [
   },
   {
     name: 'Jane Doe',
-    email: 'jane@example.com',
+    email: 'jane@gmail.com',
     password: bcrypt.hashSync('123456', 10),
     phoneNumber: '123-456-7890',
     address: '123 Main St, City',

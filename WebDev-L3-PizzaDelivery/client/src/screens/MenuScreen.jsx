@@ -60,11 +60,7 @@ function MenuScreen() {
                 </Link>
               )}
             </div>
-            <PizzaList
-              pizzaList={pizzaList.filter(
-                (pizza) => pizza.createdBy === 'admin'
-              )}
-            />
+            <PizzaList pizzaList={pizzaList} />
           </>
         ) : (
           <div className="text-4xl font-bold text-orange-600">

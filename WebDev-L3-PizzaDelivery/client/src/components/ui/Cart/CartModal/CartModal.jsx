@@ -73,7 +73,7 @@ function CartModal({ onClose }) {
                 <CartItemList />
                 <div className="mt-4">
                   <p className="text-lg font-semibold">
-                    Total Cost: $
+                    Total Cost: ₹
                     {cartItems
                       .reduce((acc, item) => acc + item.qty * item.price, 0)
                       .toFixed(2)}

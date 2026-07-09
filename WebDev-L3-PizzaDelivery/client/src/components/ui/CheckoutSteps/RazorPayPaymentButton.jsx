@@ -23,10 +23,12 @@ function RazorPayPaymentButton({ amount, orderId }) {
       script.onload = () => {
         // Razorpay script is loaded, you can now create rzp1 object here
 
+        // console.log("VITE KEY IS:", import.meta.env.VITE_RAZORPAY_KEY_ID);
+
         const options = {
           key: import.meta.env.VITE_RAZORPAY_KEY_ID,
-          amount: amount,
-          currency: 'USD',
+          amount: amount*100,
+          currency: 'INR', // <-- Fixed: Must match backend currency to prevent crashes!
           name: userInfo.name,
           description: 'Order Payment',
           image: Logo,
@@ -54,14 +56,11 @@ function RazorPayPaymentButton({ amount, orderId }) {
         };
 
         const rzp1 = new window.Razorpay(options);
+        
         rzp1.on('payment.failed', function (response) {
-          alert(response.error.code);
-          alert(response.error.description);
-          alert(response.error.source);
-          alert(response.error.step);
-          alert(response.error.reason);
-          alert(response.error.metadata.order_id);
-          alert(response.error.metadata.payment_id);
+          // Fixed: Consolidated 7 alerts into 1 clean message
+          alert(`Payment Failed: ${response.error.description}`);
+          console.error("Full Razorpay Error:", response.error);
         });
 
         window.rzp1 = rzp1;

@@ -15,7 +15,7 @@ export const loginAdmin = createAsyncThunk(
       };
 
       const { data } = await axios.post(
-        `${import.meta.env.VITE_SERVER_URL}/admin/login`,
+        `${import.meta.env.VITE_SERVER_URL}/api/admin/login`,
         { email, password },
         config
       );
@@ -45,7 +45,7 @@ export const registerAdmin = createAsyncThunk(
       };
 
       const { data } = await axios.post(
-        `${import.meta.env.VITE_SERVER_URL}/admin/register`,
+        `${import.meta.env.VITE_SERVER_URL}/api/admin/register`,
         { name, email, password, confirmPassword },
         config
       );
@@ -84,7 +84,7 @@ export const updateAdminProfile = createAsyncThunk(
       };
 
       const { data } = await axios.put(
-        `${import.meta.env.VITE_SERVER_URL}/admin/profile`,
+        `${import.meta.env.VITE_SERVER_URL}/api/admin/profile`,
         { name, email, password, confirmPassword },
         config
       );
@@ -118,7 +118,7 @@ export const getAdminUserDetails = createAsyncThunk(
       };
 
       const { data } = await axios.get(
-        `${import.meta.env.VITE_SERVER_URL}/admin/profile`,
+        `${import.meta.env.VITE_SERVER_URL}/api/admin/profile`,
         config
       );
 
@@ -151,7 +151,7 @@ export const listAdminUsers = createAsyncThunk(
       };
 
       const { data } = await axios.get(
-        `${import.meta.env.VITE_SERVER_URL}/admin`,
+        `${import.meta.env.VITE_SERVER_URL}/api/admin`,
         config
       );
 
@@ -184,7 +184,7 @@ export const getAdminUserDetailsById = createAsyncThunk(
       };
 
       const { data } = await axios.get(
-        `${import.meta.env.VITE_SERVER_URL}/admin/${id}`,
+        `${import.meta.env.VITE_SERVER_URL}/api/admin/${id}`,
         config
       );
 
@@ -221,7 +221,7 @@ export const updateAdminUserById = createAsyncThunk(
       };
 
       const { data } = await axios.put(
-        `${import.meta.env.VITE_SERVER_URL}/admin/${id}`,
+        `${import.meta.env.VITE_SERVER_URL}/api/admin/${id}`,
         { name, email, role, permissions, isApproved },
         config
       );
@@ -255,7 +255,7 @@ export const deleteAdminUserById = createAsyncThunk(
       };
 
       const { data } = await axios.delete(
-        `${import.meta.env.VITE_SERVER_URL}/admin/${id}`,
+        `${import.meta.env.VITE_SERVER_URL}/api/admin/${id}`,
         config
       );
 

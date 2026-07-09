@@ -19,7 +19,7 @@ const sendEmail = require('../middlewares/nodemailerMiddleware');
 
 const createRazorpayOrder = asyncHandler(async (req, res) => {
   try {
-    const { amount, currency } = req.body;
+    const { amount } = req.body; // No longer pulling currency from req.body
 
     const instance = new RazorPay({
       key_id: process.env.RAZORPAY_KEY_ID,
@@ -27,8 +27,8 @@ const createRazorpayOrder = asyncHandler(async (req, res) => {
     });
 
     const options = {
-      amount: amount * 100,
-      currency,
+      amount: Math.round(Number(amount) * 100), // Converts to paise perfectly
+      currency: 'INR', // 100% hardcoded to Indian Rupees to unlock Netbanking/UPI
       receipt: new mongoose.Types.ObjectId().toString(),
       payment_capture: 1,
     };
@@ -135,7 +135,7 @@ const createOrder = asyncHandler(async (req, res) => {
                             .map((item) => `<li>${item.qty} x ${item.name}</li>`)
                             .join('')}
                         </ul>
-                        <p>Total Price: ${totalPrice}</p>
+                        <p>Total Price: ₹${totalPrice}</p>
                         <p>Delivery Address: ${deliveryAddress.address}, ${deliveryAddress.city}, ${
                         deliveryAddress.postalCode
                       }, ${deliveryAddress.country}</p>

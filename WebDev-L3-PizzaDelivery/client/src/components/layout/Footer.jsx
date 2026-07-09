@@ -6,12 +6,12 @@ function Footer() {
           &copy; {new Date().getFullYear()} Pizza Palette. All rights reserved.
           Created with ♥ by{' '}
           <a
-            href="https://bento.me/itxsaaad"
-            target="_blank"
-            rel="noopener noreferrer"
+            // href="https://bento.me/itxsaaad"
+            // target="_blank"
+            // rel="noopener noreferrer"
             className="text-white hover:text-orange-800 underline underline-offset-4"
           >
-            Muhammad Saad
+            Pratik Parkale
           </a>
         </p>
       </div>

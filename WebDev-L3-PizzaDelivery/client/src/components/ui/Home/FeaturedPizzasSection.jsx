@@ -4,21 +4,21 @@ function FeaturedPizzasSection() {
       id: 1,
       name: 'Pepperoni Feast',
       description: 'Classic pepperoni pizza with extra cheese.',
-      price: 12.99,
+      price: 159,
       imageUrl: 'https://www.cicis.com/media/gvedawsa/pepperoni-pizza.png',
     },
     {
       id: 2,
       name: 'Margherita Delight',
       description: 'Fresh tomatoes, mozzarella, and basil leaves.',
-      price: 10.99,
+      price: 199,
       imageUrl: 'https://www.cicis.com/media/5jzgsmbq/supreme-pizza.png',
     },
     {
       id: 3,
       name: 'Veggie Supreme',
       description: 'Loaded with a variety of fresh vegetables.',
-      price: 11.99,
+      price: 259,
       imageUrl: 'https://www.cicis.com/media/nctfaewb/veggie-pizza.png',
     },
   ];
@@ -46,7 +46,7 @@ function FeaturedPizzasSection() {
                   {pizza.name}
                 </h3>
                 <span className="text-2xl font-bold text-orange-500">
-                  ${pizza.price}
+                  ₹{pizza.price}
                 </span>
               </div>
               <p className="text-sm text-gray-700">{pizza.description}</p>

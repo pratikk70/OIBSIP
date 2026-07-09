@@ -36,7 +36,7 @@ function CartItemList() {
           <div className="flex-grow">
             <p className="font-semibold">{item.name}</p>
             <p>
-              Price: ${item.price} | Size:{' '}
+              Price: ₹{item.price} | Size:{' '}
               {item.size.charAt(0).toUpperCase() + item.size.slice(1)}
             </p>
             <div className="flex items-center space-x-2">
@@ -77,7 +77,7 @@ function CartItemList() {
             <FaTrash />
           </Button>
 
-          <p>Total: ${item.price * item.qty}</p>
+          <p>Total: ₹{item.price * item.qty}</p>
         </div>
       ))}
     </>

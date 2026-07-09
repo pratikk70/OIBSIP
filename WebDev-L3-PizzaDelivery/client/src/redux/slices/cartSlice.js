@@ -7,7 +7,7 @@ export const addToCart = createAsyncThunk(
   async ({ id, qty }, { rejectWithValue }) => {
     try {
       const { data } = await axios.get(
-        `${import.meta.env.VITE_SERVER_URL}/pizzas/${id}`
+        `${import.meta.env.VITE_SERVER_URL}/api/pizzas/${id}`
       );
 
       return {
@@ -46,7 +46,7 @@ export const createRazorPayOrder = createAsyncThunk(
       };
 
       const { data } = await axios.post(
-        `${import.meta.env.VITE_SERVER_URL}/orders/checkout`,
+        `${import.meta.env.VITE_SERVER_URL}/api/orders/checkout`,
         { amount, currency },
         config
       );

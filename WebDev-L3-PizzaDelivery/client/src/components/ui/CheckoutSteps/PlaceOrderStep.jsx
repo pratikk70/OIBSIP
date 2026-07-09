@@ -3,9 +3,9 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-// Import Thunks
+// Import Thunks & Slices
 import { createOrder } from '../../../redux/asyncThunks/orderThunks';
-import { clearCartData } from '../../../redux/slices/cartSlice';
+import { clearCartData, createRazorPayOrder } from '../../../redux/slices/cartSlice'; // Added createRazorPayOrder
 
 // Import Components
 import Button from '../Button';
@@ -29,53 +29,26 @@ function PlaceOrderStep({ setCurrentStep }) {
   const order = useSelector((state) => state.order);
   const { loading, orderInfo, orderCreateSuccess, orderCreateError } = order;
 
+  // 1. Cleaned up math to ensure safe, exact calculations
+  const itemsPrice = cartItems ? cartItems.reduce((acc, item) => acc + item.price * item.qty, 0) : 0;
+  const deliveryCharges = itemsPrice > 100 ? 0 : 10;
+  const salesTax = Number((0.15 * itemsPrice).toFixed(2));
+  const finalTotalPrice = Math.round(itemsPrice + deliveryCharges + salesTax);
+
   const orderSummary = [
-    {
-      name: 'Items Price',
-      value:
-        cartItems &&
-        cartItems.reduce((acc, item) => acc + item.price * item.qty, 0),
-    },
-    {
-      name: 'Delivery Charges',
-      value:
-        cartItems &&
-        cartItems.reduce((acc, item) => acc + item.price * item.qty, 0) > 100
-          ? 0
-          : 10,
-    },
-    {
-      name: 'Sales Tax',
-      value:
-        cartItems &&
-        Number(
-          (
-            0.15 *
-            cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
-          ).toFixed(2)
-        ),
-    },
-    {
-      name: 'Total',
-      value:
-        cartItems &&
-        Math.round(
-          (
-            cartItems.reduce((acc, item) => acc + item.price * item.qty, 0) +
-            (cartItems.reduce((acc, item) => acc + item.price * item.qty, 0) >
-            100
-              ? 0
-              : 10) +
-            Number(
-              (
-                0.15 *
-                cartItems.reduce((acc, item) => acc + item.price * item.qty, 0)
-              ).toFixed(2)
-            )
-          ).toFixed(2)
-        ),
-    },
+    { name: 'Items Price', value: itemsPrice },
+    { name: 'Delivery Charges', value: deliveryCharges },
+    { name: 'Sales Tax', value: salesTax },
+    { name: 'Total', value: finalTotalPrice },
   ];
+
+  // 2. Fetch Razorpay Order ID securely on page load
+  useEffect(() => {
+    // Only fetch if we don't already have an ID
+    if (!orderGetRazorPayOrderDetails?.id) {
+      dispatch(createRazorPayOrder({ amount: finalTotalPrice, currency: 'INR' }));
+    }
+  }, [dispatch, orderGetRazorPayOrderDetails?.id, finalTotalPrice]);
 
   const handlePlaceOrder = () => {
     dispatch(
@@ -88,7 +61,7 @@ function PlaceOrderStep({ setCurrentStep }) {
         payment: {
           method: paymentMethod.toLowerCase().replace(' ', ''),
           razorpayOrderId: orderRazorPayPaymentDetails.razorPayPaymentId,
-          status: orderRazorPayPaymentDetails ? 'success' : 'pending',
+          status: orderRazorPayPaymentDetails.razorPayPaymentId ? 'success' : 'pending',
         },
       })
     );
@@ -167,13 +140,13 @@ function PlaceOrderStep({ setCurrentStep }) {
                             {item.name}
                           </p>
                           <p>
-                            Price: ${item.price} | Size:{' '}
+                            Price: ₹{item.price} | Size:{' '}
                             {item.size.charAt(0).toUpperCase() +
                               item.size.slice(1)}
                           </p>
                         </div>
                         <p className="text-black text-md leading-relaxed">
-                          {item.qty} x ${item.price}= ${item.price * item.qty}
+                          {item.qty} x ₹{item.price}= ₹{item.price * item.qty}
                         </p>
                       </div>
                     </div>
@@ -195,17 +168,24 @@ function PlaceOrderStep({ setCurrentStep }) {
                       {item.name}
                     </p>
                     <p className="text-black text-md leading-relaxed">
-                      ${item.value}
+                      ₹{item.value}
                     </p>
                   </div>
                 ))}
               </div>
+              
+              {/* 3. Safeguard: Prevent button render until Order ID is fully loaded */}
               {!orderRazorPayPaymentDetails.razorPayPaymentId && (
-                <RazorPayPaymentButton
-                  amount={orderSummary[3].value}
-                  orderId={orderGetRazorPayOrderDetails.id}
-                />
+                orderGetRazorPayOrderDetails?.id ? (
+                  <RazorPayPaymentButton
+                    amount={finalTotalPrice}
+                    orderId={orderGetRazorPayOrderDetails.id}
+                  />
+                ) : (
+                  <Loader />
+                )
               )}
+
               <Button
                 variant="primary"
                 disabled={

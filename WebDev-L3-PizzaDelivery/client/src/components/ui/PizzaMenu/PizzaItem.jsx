@@ -22,7 +22,7 @@ function PizzaItem({ pizza }) {
         <div className="flex justify-between items-center w-full">
           <h3 className="text-lg font-bold text-black mb-1">{pizza.name}</h3>
           <span className="text-2xl font-bold text-orange-500">
-            ${pizza.price}
+            ₹{pizza.price}
           </span>
         </div>
         <p className="text-sm text-gray-700">{pizza.description}</p>

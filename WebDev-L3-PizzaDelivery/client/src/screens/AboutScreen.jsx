@@ -49,7 +49,7 @@ function AboutScreen() {
               href="mailto:contact@pizzapalette.com"
               className="text-orange-500 hover:text-orange-700"
             >
-              contact@pizzapalette.com
+              pratikparkale05@gmail.com
             </a>
           </p>
         </article>

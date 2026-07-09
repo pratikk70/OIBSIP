@@ -21,7 +21,7 @@ function Table({ data, columns, handleDelete, handleChange }) {
               {columns.map((column) => (
                 <>
                   <th key={column}>
-                    {column.replace(/([A-Z])/g, ' $1').trim()}
+                    {column.replace(/([A-Z])/g, ' ₹1').trim()}
                   </th>
                 </>
               ))}
