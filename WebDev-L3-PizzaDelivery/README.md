@@ -36,6 +36,20 @@ Pizza Delivery System App (MERN - MongoDB, Express, React, Node.js) is a compreh
 
 ---
 
+<img width="1911" height="916" alt="image" src="https://github.com/user-attachments/assets/d1ed8255-f38a-4098-ae2d-4e2e4bb1ffec" />
+
+<img width="1919" height="908" alt="image" src="https://github.com/user-attachments/assets/31a2d49f-84b4-4a6c-8fc9-051b01551999" />
+
+<img width="1919" height="909" alt="image" src="https://github.com/user-attachments/assets/63d2865e-4659-41f3-9bfb-d3a81d108e0f" />
+
+<img width="1918" height="916" alt="image" src="https://github.com/user-attachments/assets/97c0a5e2-169b-45aa-9de9-90556ff19592" />
+
+<img width="1918" height="911" alt="image" src="https://github.com/user-attachments/assets/c8057215-a03c-4c84-963c-e084cdf04f2e" />
+
+<img width="1919" height="910" alt="image" src="https://github.com/user-attachments/assets/117d056d-cf18-4d77-ad06-28909b0f1301" />
+
+
+
 ## Getting Started
 
 ### Prerequisites
